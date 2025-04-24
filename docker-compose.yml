@@ -29,7 +29,7 @@ services:
   redis:
     image: redis
     env_file: .env
-    restart: always
+    restart: unless-stopped
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
@@ -37,7 +37,7 @@ services:
 
   db:
     image: postgres:14-alpine
-    restart: always
+    restart: unless-stopped
     env_file: .env
     volumes:
       - ./volume/pg_data:/var/lib/postgresql/data
